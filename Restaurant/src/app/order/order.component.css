@@ -1,0 +1,13 @@
+table{
+    position: absolute;
+    width: 100%;
+    margin-top: 0%;
+}
+.container{
+    padding-top: 8%;
+    margin-right: 3%;
+    margin-left: -4%;
+}
+.container-fluid{
+    margin-left: 4%;
+}

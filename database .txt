@@ -1,0 +1,6 @@
+java side
+database 
+1. give table order 
+2. menu item 
+3. when customer complete the dinner then save the menu item quantity , customer name contact email and  money give cash or online 
+4. admin detail

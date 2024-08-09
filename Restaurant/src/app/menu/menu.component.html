@@ -1,0 +1,83 @@
+<div class="container-fluid mt-4 pt-3">
+  <div class="alert alert-warning text-center mt-5" *ngIf="message ">
+    <strong>{{message}}</strong>
+  </div>
+</div>
+
+<div class="containe-fluid pt-5" id="second" >
+  <h1 class="text-center pt-4">Food Menu</h1>
+  <div class="row d-flex justify-content-between">
+    <div class="pills d-flex justify-content-center">
+      <ul class="nav nav-pills">
+        <li class="nav-item">
+          <a class="nav-link text-decoration-underline">All</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-decoration-underline" (click)="category('veg')">Veg</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-decoration-underline" (click)="category('non-veg')" >Non-Veg</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-decoration-underline" (click)="category('special')" >Special</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-decoration-underline" (click)="category('thali')">Thali</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid" id="check">
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="orderModalLabel">Order Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ul class="list-unstyled">
+              <li>
+                <div class="mb-3">
+                  <label class="form-label"><strong>Item Name:</strong></label>
+                  <div>{{clickRest.name}}</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label"><strong>Category:</strong></label>
+                  <div>{{clickRest.category}}</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label"><strong>Price:</strong></label>
+                  <div>{{clickRest.price | currency:'INR'}}</div>
+                </div>
+                <div class="mb-3">
+                  <label class="form-label"><strong>Description:</strong></label>
+                  <div>{{clickRest.description}}</div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="placeOrder(clickRest)">Select</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt-4" >
+    <div class="col-12 brd p-4" *ngIf="isCategory">
+     
+      <div class="row">
+        <div class="col-6 col-md-4" *ngFor="let rest of getAllMenuItemsRest">
+          <div class="card" style="border: none;">
+            <img [src]="rest.image" class="card-img-top img-fluid" style="border-radius: 10%;" data-bs-toggle="modal" data-bs-target="#orderModal" (click)="click(rest)">
+            <div class="card-body">
+              <small class="card-text">{{rest.name}}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

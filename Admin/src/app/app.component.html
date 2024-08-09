@@ -1,0 +1,32 @@
+
+<div class="container" style="border: none;" >
+  <nav>
+    <ul class="nav nav-tabs d-flex justify-content-center">
+      <li class="nav-item">
+        <a class="nav-link " href="dashboard">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="reservation">Reservations</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  href="menu">Menu</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="profile">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link"  href="#">Logout</a>
+      </li> 
+      <form class="d-flex align-items-center">
+        <input class="form-control" type="text" placeholder="Search table no.">
+        <button class="btn" type="submit">Search</button>
+      </form> 
+    </ul>   
+  </nav>
+</div>
+
+<a class="nav-linkk" *ngIf="showBackToTop" (click)="scrollToTop()">
+  <i class="bi-arrow-up-circle-fill" style="font-size:30px ;"></i>
+</a>
+
+<router-outlet></router-outlet>

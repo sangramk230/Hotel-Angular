@@ -1,0 +1,72 @@
+
+#first{
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 10%;
+  }
+   #first .spinner {
+      border-radius: 10%;
+      width: 100%;
+      height: 90%; 
+      animation: spin 30s linear infinite;
+    }
+    
+    #first .infor{
+      text-align: center;
+      animation: moveRight 0.5s;
+    }
+  
+    #first h1 span{
+      font-weight: 700;
+    }
+    
+  #third{
+    padding-top: 10%;
+    width: 100vw;
+    height: 100vh;
+    animation: fadeIn 1s;
+  }
+  
+  #third.img-fluid{
+    animation: 3s fadeIn forwards 0.1s;
+  }
+  #fourth {
+    padding-top: 12%;
+    width: 100vw;
+    height: 100vh;
+    animation: fadeIn 1s;
+  }
+
+  #fourth .vertical-line {
+      width: 1px;
+      height: 40px;
+      background-color: black;
+      margin: 10px 0;
+      animation: showLine 1.2s forwards 1s;
+    }
+
+    #fourth .text {
+      opacity: 0;
+      margin-top: 10px;
+      font-size: 24px;
+      animation: showText 1.3s forwards 1s;
+    }
+    
+    #fourth img{
+      margin-top: 1%;
+      width: 95%;
+      position: absolute;
+      animation: 1.5 fadeIn;
+    }
+    #fourth .hotel-name{
+      font-size: 54px;
+      position: relative;
+      margin-top: 20%;
+      margin-left: 10%;
+      color: rgb(230, 154, 96);
+    }
+
+
+
+
+  

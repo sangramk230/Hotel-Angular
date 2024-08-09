@@ -1,0 +1,127 @@
+<div class="container" style="margin-top: 20%;">
+  <div class="row d-flex justify-content-between">
+    <div class="pills d-flex justify-content-center">
+      <ul class="nav nav-pills text-decoration-underline">
+        <li class="nav-item">
+          <a class="nav-link" (click)="isAdd = false" >Menu-Items</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" (click)="isAdd = true" >Add-Item</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="alert alert-warning text-center" *ngIf="message ">
+  <strong>{{message}}</strong>
+</div>
+<div class="container-fluid mt-4" id="add"  *ngIf="isAdd">
+    <h2 class="text-center fw-bold">Add Menu Item</h2>
+    <form style="justify-content: center;display: flex;text-align: center;">
+      <div class="form-group">
+        <label for="name">Menu Name</label>
+        <input type="text" class="form-control" placeholder="Enter menu name" name="name" [(ngModel)]="addMenuRest.name" >
+        <label for="price">Item Price</label>
+        <input type="number" class="form-control" placeholder="Enter item price" name="price" [(ngModel)]="addMenuRest.price" >
+        <label for="description">Additional Info</label>
+        <input  type="text" class="form-control" placeholder="Enter additional information" name="description" [(ngModel)]="addMenuRest.description">
+        <label for="description">Category</label>
+        <select  type="text" class="form-control" placeholder="Enter additional information" name="description" [(ngModel)]="addMenuRest.category">
+            <option value="veg">Veg</option>
+            <option value="non-veg">Non-Veg</option>
+            <option value="special">Special</option>
+            <option value="thali">Thali</option>
+        </select>
+        <label for="image">Image</label>
+        <input  type="file" class="form-control" placeholder="Add Image" name="image" (change)="handleFileInput($event)">
+        <button type="submit" class="btn btn-primary mt-3 btc"  (click)="addMenu()">Add</button>
+
+      </div>
+    </form>
+</div>
+
+<div class="container" id="menu" *ngIf="!isAdd">
+  <div class="containe-fluid mt-1 p-4" id="second" >
+    <h1 class="text-center pt-4">Food Menu</h1>
+    <div class="row d-flex justify-content-between">
+      <div class="pills d-flex justify-content-center">
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <a class="nav-link text-decoration-underline">All</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-decoration-underline" (click)="category('veg')">Veg</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-decoration-underline" (click)="category('non-veg')" >Non-Veg</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-decoration-underline" (click)="category('special')" >Special</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-decoration-underline" (click)="category('thali')">Thali</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="container-fluid" id="check">
+      <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="orderModalLabel">Order Details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul class="list-unstyled">
+                <li>
+                  <div class="mb-3">
+                    <label class="form-label"><strong>Item Name:</strong></label>
+                    <div>{{clickRest.name}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label"><strong>Category:</strong></label>
+                    <div>{{clickRest.category}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label"><strong>Price:</strong></label>
+                    <div>{{clickRest.price | currency:'INR'}}</div>
+                  </div>
+                  <div class="mb-3">
+                    <label class="form-label"><strong>Description:</strong></label>
+                    <div>{{clickRest.description}}</div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Select</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row mt-4" >
+      <div class="col-12 brd p-4" *ngIf="isCategory">
+       
+        <div class="row">
+          <div class="col-6 col-md-4" *ngFor="let rest of getAllMenuItemsRest">
+            <div class="card" style="border: none;">
+              <img [src]="rest.image" class="card-img-top img-fluid" style="border-radius: 10%;" data-bs-toggle="modal" data-bs-target="#orderModal" (click)="click(rest)">
+              <div class="card-body">
+                <small class="card-text">{{rest.name}}</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 p-4" *ngIf="!isCategory">
+        <div class="alert alert-warning text-center" *ngIf="message ">
+          <strong>{{message}}</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

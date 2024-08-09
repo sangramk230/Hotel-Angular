@@ -1,0 +1,83 @@
+<div class="container" id="dashboard">
+  <div class="row">
+    <div class="col-8">
+      <div class="card p-1">
+        <div class="card-header text-center">
+          <h5 class="mb-0">Recent Orders</h5>
+        </div>
+        <div class="card-body p-0">
+          <ul class="list-group list-group-flush" *ngIf="tableIdsSet.size > 0">
+            <li *ngFor="let tableId of tableIdsSet" class="list-group-item d-flex justify-content-between align-items-center">
+              <span>Table {{ tableId }}</span>
+              <a class="view-link" data-bs-toggle="modal" data-bs-target="#orderModal" (click)="check(tableId)">Check</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 mt-1">
+      <table class="table table-hover" style="box-shadow: 0px 3px 3px 0px black; border-radius: 10%;">
+        <thead>
+          <tr>
+            <th scope="col" class="text-center">Free Table</th>
+          </tr>
+        </thead>
+        <tbody class="text-center">
+          <tr *ngFor="let freeTable of freeTables">
+            <td>{{ freeTable }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal for Order Details -->
+  <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="orderModalLabel">Order Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3 text-center">
+            <label class="form-label"><strong>Table No.:</strong></label>
+            <div>{{ tableid }}</div>
+          </div>
+          <ul>
+            <li *ngFor="let order of checkRest" class="mb-3">
+              <div>
+                <label class="form-label"><strong>Item Name:</strong></label>
+                <div>{{ order.name }}</div>
+              </div>
+              <div>
+                <label class="form-label"><strong>Quantity:</strong></label>
+                <div>{{ order.quantity }}</div>
+              </div>
+              <div>
+                <label class="form-label"><strong>Price:</strong></label>
+                <div>{{ order.price | currency: 'INR' }}</div>
+              </div>
+            </li>
+          </ul>
+          <div class="mb-3">
+            <label class="form-label"><strong>Waiting Time:</strong></label>
+            <input type="number" class="form-control" [(ngModel)]="time">
+          </div>
+          <div class="mb-3">
+            <label class="form-label"><strong>Status:</strong></label>
+            <select class="form-control" [(ngModel)]="status">
+              <option selected hidden>Select Option</option>
+              <option value="Reserved">Reserved</option>
+              <option value="Finished">Finished</option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="updateOrder(time, status)" data-bs-dismiss="modal">Accept</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

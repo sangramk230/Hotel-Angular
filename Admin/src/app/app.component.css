@@ -1,0 +1,56 @@
+
+.container {
+    margin: 0 auto;
+    padding: 0 10px;
+    max-width: 100%;
+  
+}
+.nav {
+    background-color: #ffffff;
+    top: 0%;
+    left: 0%;
+    width: 100vw;
+    position: fixed;
+    align-items: center;
+    padding: 10px 8px;
+    transform: rotateX(0deg);
+    transition: transform 0.3s ease-in-out;
+    z-index: 99;
+    border: none;
+}
+
+.nav:hover {
+    transform: rotateX(10deg);
+}
+
+.nav a {
+    border: none;
+    cursor: pointer;
+    color: rgba(165, 42, 42, 0.899);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 5px 8px;
+    transition: transform 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.nav a:active {
+    transform: translatex(-2px);
+    color: rgb(255, 68, 0);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.126);
+}
+  
+.nav-linkk {
+    position: fixed;
+    bottom: 20px;
+    right: 3%;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1000;
+    color: rgb(0, 0, 0);
+    
+  }
+  .nav-link.show {
+    display: block; 
+  }
+
+

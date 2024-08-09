@@ -1,0 +1,105 @@
+<div class="container mt-5" id="reservation">
+  <h2 class="mb-4 ms-3 text-center">Reserved Table Information</h2>
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+      <div class="col-12 mb-3" *ngFor="let tbid of tableIdsSet">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title text-center">Table {{tbid}}</h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Quantity</th>
+                  <th>Price</th>
+                  <th>Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rest of getAllTableOrdrsRest" [ngClass]="{'d-none': rest.tableid !== tbid}">
+                  <td>{{rest.name}}</td>
+                  <td>{{rest.quantity}}</td>
+                  <td>{{rest.price | currency:'INR'}}</td>
+                  <td>{{rest.quantity * rest.price | currency:'INR'}}</td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="text-end"><strong>Subtotal</strong></td>
+                  <td><strong>{{total | currency:'INR'}}</strong></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row">
+              <div class="mb-3">
+                <label class="form-label"><strong>Waiting Time:</strong></label>
+                <input type="time" class="form-control" [(ngModel)]="time">
+              </div>
+              <div class="mb-3">
+                <select class="form-control text-center" [(ngModel)]="status">
+                  <option selected hidden>Select Option</option>
+                  <option value="Reserved">Reserved</option>
+                  <option value="Finished">Finished</option>
+                </select>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#orderModal" (click)="bill(tbid)">Accept</button>
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal for Bill Details -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="orderModalLabel">Bill Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label class="form-label"><strong>Table No.:</strong></label>
+              <div>{{ tableid }}</div>
+            </div>
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">Item Name</th>
+                  <th scope="col">Quantity</th>
+                  <th scope="col">Unit Price</th>
+                  <th scope="col">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let rest of billRest">
+                  <td>{{ rest.name }}</td>
+                  <td>{{ rest.quantity }}</td>
+                  <td>{{ rest.price | currency:'INR' }}</td>
+                  <td>{{ (rest.quantity * rest.price) | currency:'INR' }}</td>
+                </tr>
+                <tr>
+                  <td colspan="3" class="text-end"><strong>Subtotal</strong></td>
+                  <td><strong>{{ total | currency }}</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="saveOrder()">Save</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-12 text-center">
+        <h5 class="fw-bold">Daily Income:{{dailyIncome | currency:'INR'}}</h5>
+      </div>
+    </div>
+  </div>
+</div>

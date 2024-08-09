@@ -1,0 +1,79 @@
+#second {
+    width: 100vw;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+  }
+
+  #second .card {
+    border: none;
+    border-radius: 10%;
+    
+
+    transition: transform 0.3s ease;
+  }
+    .card-img-top {
+        margin-left: 8%;
+    width: 160px;
+    height: 160px;
+  } 
+    .card-img-top:hover {
+    transform: scale(1);
+  } 
+  #second .card:hover {
+    transform: translateX(5px);
+  }
+  
+  #second .brd {
+    border-radius: 2%;
+    box-shadow: 0 0 100px 10px rgb(211, 211, 203);
+  }
+
+  #second .btn {
+    margin-bottom: 20px;
+  }
+    
+#menu{
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    border-radius: 2%;
+    top: 2%;
+    width: 100%;
+    animation: fadeIn 0.5s ease-in-out forwards; 
+  }
+
+#a{
+  color: rgb(0, 0, 0);
+}
+#a:active {  
+  color: rgb(255, 68, 0);  
+}
+#v{
+  color: green;
+}
+#v:active {  
+  color: rgb(20, 225, 20);  
+}
+#nv{
+  color: rgb(144, 0, 0);
+}
+#nv:active {  
+  color: rgb(255, 68, 0);  
+}
+#spc{
+  color: rgb(178, 123, 15);
+}
+#spc:active {  
+  color: rgb(220, 153, 20);  
+}
+#thl{
+  color: rgb(4, 44, 137);
+}
+#thl:active {  
+  color: rgb(10, 70, 210);  
+}
+#fik{
+  color: rgb(85, 82, 82);
+}
+#fik:active {  
+  color: rgb(84, 84, 83);  
+}
